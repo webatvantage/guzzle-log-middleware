@@ -1,5 +1,5 @@
 {
-    "name": "covergenius/guzzle_logger",
+    "name": "webatvantage/guzzle-log-middleware",
     "description": "A Guzzle middleware to log request and responses automatically",
     "keywords": [
         "psr3",
@@ -8,11 +8,15 @@
         "logging"
     ],
     "license": "MIT",
-    "homepage": "https://github.com/covergenius/guzzle-log-middleware",
+    "homepage": "https://github.com/webatvantage/guzzle-log-middleware",
     "authors": [
         {
             "name": "George Mponos",
             "email": "gmponos@gmail.com"
+        },
+        {
+            "name": "Webatvantage",
+            "homepage": "https://www.webatvantage.be"
         }
     ],
     "autoload": {
@@ -24,6 +28,9 @@
         "psr-4": {
             "GuzzleLogMiddleware\\Test\\": "tests/"
         }
+    },
+    "replace": {
+        "covergenius/guzzle_logger": "self.version"
     },
     "require": {
         "php": "^7.2 || ^8.0",

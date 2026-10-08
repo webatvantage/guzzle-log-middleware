@@ -10,7 +10,7 @@ The middleware is functional with version 6 of Guzzle.
 Via Composer
 
 ``` bash
-$ composer require covergenius/guzzle_logger
+$ composer require webatvantage/guzzle-log-middleware
 ```
 
 ## Usage
