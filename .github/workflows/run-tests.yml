@@ -3,11 +3,6 @@ name: Run PHPUnit Tests
 on:
   push:
     branches: [ main ]
-    paths:
-      - '**.php'
-      - 'composer.json'
-      - 'phpunit.xml.dist'
-      - '.github/workflows/run-tests.yml'
   pull_request:
     types: [ opened, synchronize ]
   workflow_call:
