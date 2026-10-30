@@ -35,9 +35,9 @@
     "require": {
         "php": "^7.2 || ^8.0",
         "ext-json": "*",
-        "guzzlehttp/guzzle": "^6.1 || ^7.0.1",
-        "guzzlehttp/promises": "^2",
-        "guzzlehttp/psr7": "^1.7 || ^2.0",
+        "guzzlehttp/guzzle": "^6.1 || ^7.0.1 || ^8.0",
+        "guzzlehttp/promises": "^2 || ^3.1",
+        "guzzlehttp/psr7": "^1.7 || ^2.0 || ^3.2",
         "psr/log": "^1.1 || ^2.0 || ^3.0"
     },
     "require-dev": {

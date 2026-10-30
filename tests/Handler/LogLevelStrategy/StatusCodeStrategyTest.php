@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace GuzzleLogMiddleware\Test\Handler\LogLevelStrategy;
 
-use GuzzleHttp\Exception\TransferException;
+use GuzzleHttp\Exception\ConnectException;
+use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
 use GuzzleLogMiddleware\Handler\LogLevelStrategy\StatusCodeStrategy;
 use GuzzleLogMiddleware\Handler\MultiRecordArrayHandler;
@@ -49,7 +50,7 @@ final class StatusCodeStrategyTest extends AbstractLoggerMiddlewareTest
     public function logTransactionWhenTransferExceptionOccurs(): void
     {
         try {
-            $this->mockHandler->append(new TransferException());
+            $this->mockHandler->append(new ConnectException('Connection refused', new Request('GET', '/')));
             $this->createClient()->get('/');
         } catch (\Exception $e) {
         }

@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace GuzzleLogMiddleware\Test;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\TransferException;
+use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
 use GuzzleLogMiddleware\LogMiddleware;
 use Psr\Log\LogLevel;
@@ -185,7 +186,7 @@ final class LogMiddlewareTest extends AbstractLoggerMiddlewareTest
     public function logTransactionWhenTransferExceptionOccurs(): void
     {
         try {
-            $this->mockHandler->append(new TransferException());
+            $this->mockHandler->append(new ConnectException('Connection refused', new Request('GET', '/')));
             $this->createClient()->get('/');
         } catch (\Exception $e) {
         }

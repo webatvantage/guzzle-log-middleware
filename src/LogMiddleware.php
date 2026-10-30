@@ -110,7 +110,8 @@ final class LogMiddleware
     private function handleFailure(RequestInterface $request, array $options): callable
     {
         return function ($reason) use ($request, $options) {
-            if ($reason instanceof RequestException && $reason->hasResponse() === true) {
+            // Guzzle 8 moved the response from RequestException down to ResponseException.
+            if ($reason instanceof RequestException && method_exists($reason, 'getResponse') && $reason->getResponse() !== null) {
                 $this->handler->log($this->logger, $request, $reason->getResponse(), $reason, $this->stats, $options);
                 return \GuzzleHttp\Promise\Create::rejectionFor($reason);
             }

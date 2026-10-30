@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace GuzzleLogMiddleware\Test\Handler\LogLevelStrategy;
 
+use GuzzleHttp\Exception\BadResponseException;
+use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Exception\TransferException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
@@ -78,7 +79,7 @@ final class FixedStrategyTest extends AbstractLoggerMiddlewareTest
     {
         try {
             $this->mockHandler->append(
-                new RequestException('Not Found', new Request('get', 'www.test.com'), new Response(404))
+                new BadResponseException('Not Found', new Request('get', 'www.test.com'), new Response(404))
             );
             $this->createClient()->get('/');
         } catch (\Exception $e) {
@@ -97,7 +98,7 @@ final class FixedStrategyTest extends AbstractLoggerMiddlewareTest
     public function logTransactionWhenTransferExceptionOccurs(): void
     {
         try {
-            $this->mockHandler->append(new TransferException());
+            $this->mockHandler->append(new ConnectException('Connection refused', new Request('GET', '/')));
             $this->createClient()->get('/');
         } catch (\Exception $e) {
         }

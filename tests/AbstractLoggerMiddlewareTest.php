@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace GuzzleLogMiddleware\Test;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Request;
@@ -56,7 +56,7 @@ abstract class AbstractLoggerMiddlewareTest extends TestCase
         $this->logger = new TestLogger();
         $this->request = new Request('get', 'http://www.test.com/');
         $this->response = new Response(404);
-        $this->reason = new RequestException('Not Found', $this->request, $this->response);
+        $this->reason = new BadResponseException('Not Found', $this->request, $this->response);
         $this->stats = new TransferStats($this->request, $this->response, 0.01);
     }
 
