@@ -1,0 +1,48 @@
+name: Run PHPUnit Tests
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '**.php'
+      - 'composer.json'
+      - 'phpunit.xml.dist'
+      - '.github/workflows/run-tests.yml'
+  pull_request:
+    types: [ opened, synchronize ]
+  workflow_call:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [ '7.4', '8.0', '8.5' ]
+        guzzle: [ '7', '8' ]
+        stability: [ lowest, highest ]
+
+    name: P${{ matrix.php }} - Guzzle ${{ matrix.guzzle }} - ${{ matrix.stability }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: curl, json, mbstring
+          coverage: none
+
+      - name: Require Guzzle ${{ matrix.guzzle }}
+        run: composer require "guzzlehttp/guzzle:^${{ matrix.guzzle }}.0" --no-update --no-interaction
+
+      - name: Install composer dependencies
+        uses: ramsey/composer-install@v4
+        with:
+          dependency-versions: ${{ matrix.stability }}
+
+      - name: Execute tests
+        run: composer test -- --no-coverage
