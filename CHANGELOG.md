@@ -2,7 +2,7 @@
 
 All Notable changes to `webatvantage/guzzle-log-middleware` will be documented in this file
 
-## Unreleased
+## 3.0.0 - 2026-10-30
 
 ### Changed
 - **BREAKING CHANGE** Dropped support for PHP 7.2 and 7.3 and require PHP 7.4 as minimum version.
