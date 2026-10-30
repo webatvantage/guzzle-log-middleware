@@ -1,13 +1,14 @@
-### Composer
+# Composer
 composer.phar
 composer.lock
 vendor/
 
-### PHPUnit
+# PHPUnit
 phpunit.xml
 
-### Codesniffer
+# Codesniffer
 phpcs.xml
 
-### Custom
+# Custom
+.idea/
 build
