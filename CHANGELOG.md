@@ -1,6 +1,13 @@
 # Changelog
 
-All Notable changes to `gmponos/guzzle_logger` will be documented in this file
+All Notable changes to `webatvantage/guzzle-log-middleware` will be documented in this file
+
+## Unreleased
+
+### Changed
+- **BREAKING CHANGE** Dropped support for PHP 7.2 and 7.3 and require PHP 7.4 as minimum version.
+- **BREAKING CHANGE** Dropped support for Guzzle 6.
+- Allow Guzzle 8, guzzlehttp/promises 3 and guzzlehttp/psr7 3.
 
 ## 2.2.0 - 2021-04-04
 
